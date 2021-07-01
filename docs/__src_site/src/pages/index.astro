@@ -16,9 +16,9 @@ import LogicGates from "~/components/LogicGates.astro"
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>css-bin-bits - a vanilla CSS API for binary operations and bit manipulation of 16 bit numbers</title>
-  <link rel="stylesheet" href="/assets/css-bin-bits/bin-bits.css">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/css-bin-bits@0.0.1/bin-bits.css">
 
-  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="icon" type="image/png" href="../../public/favicon.png">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146833088-2"></script>
   <script>
@@ -175,7 +175,9 @@ import LogicGates from "~/components/LogicGates.astro"
     header nav :global(a path) {
       fill: hsl(var(--at-prop-bg));
     }
-    header nav :global(a:hover path) {
+    header nav :global(a:hover path),
+    header nav :global(a:active path),
+    header nav :global(a:focus path) {
       fill: hsl(var(--at-prop-color));
     }
 

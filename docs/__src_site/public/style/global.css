@@ -89,7 +89,7 @@ a[href^="#"] {
 a[href^="#"]::after,
 a[href^="#"]:hover::after {
   content: "";
-  --mask: url(/assets/link.svg) center center / 80% 80% no-repeat;
+  --mask: url("../assets/link.svg") center center / 80% 80% no-repeat;
   -webkit-mask: var(--mask);
   mask: var(--mask);
   background: currentColor;
