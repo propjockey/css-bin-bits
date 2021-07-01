@@ -1,6 +1,6 @@
 {
   "name": "css-bin-bits",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a vanilla CSS API for binary operations and bit manipulation of 16 bit --number-vars",
   "main": "bin-bits.css",
   "directories": {
