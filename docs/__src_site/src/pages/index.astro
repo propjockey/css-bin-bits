@@ -1,0 +1,277 @@
+---
+import "augmented-ui/augmented-ui.min.css"
+import "css-media-vars/css-media-vars.css"
+import PJLink from "~/components/PJLink.astro"
+import NPMLink from "~/components/NPMLink.astro"
+import GitHubLink from "~/components/GitHubLink.astro"
+import TwitterLink from "~/components/TwitterLink.astro"
+import InputDocs from "~/components/InputDocs.astro"
+import OutputDocs from "~/components/OutputDocs.astro"
+import LogicGates from "~/components/LogicGates.astro"
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>css-bin-bits - a vanilla CSS API for binary operations and bit manipulation of 16 bit numbers</title>
+  <link rel="stylesheet" href="/assets/css-bin-bits/bin-bits.css">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146833088-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-146833088-2');
+  </script>
+  <link rel="stylesheet" href="/style/global.css">
+
+  <style>
+    main {
+      width: var(--main-width);
+      max-width: 100%;
+      position: relative;
+      margin: 0 auto;
+      background: hsl(var(--theme_1));
+      --aug-bl: calc(var(--main-width) / 8);
+      --aug-br: calc(var(--main-width) / 8);
+      --aug-border-all: calc(var(--main-width) * 0.15 * 0.08);
+      --aug-inlay-all: calc(var(--main-width) * 0.15 * 0.06);
+      --asdfs: calc(var(--main-width) / 7.85);
+      --aug-border-bg: linear-gradient(
+        45deg,
+        hsl(var(--at-prop-bg)) var(--asdfs),
+        transparent var(--asdfs)
+      ), linear-gradient(
+        -45deg,
+        hsl(var(--at-prop-bg)) var(--asdfs),
+        transparent var(--asdfs)
+      ), linear-gradient(
+        to top,
+        hsl(var(--at-prop-bg)) var(--aug-bl),
+        transparent var(--aug-bl)
+      );
+      --aug-inlay-bg: linear-gradient(
+        to top,
+        hsl(var(--theme_2)) 1.75rem,
+        hsl(var(--theme_1)) 1.75rem 2.25rem,
+        hsl(var(--theme_2)) 2.25rem 3rem,
+        transparent 3rem
+      );
+      padding-bottom: 5rem;
+    }
+    .main-wrapper {
+      width: var(--main-width);
+      max-width: 100%;
+      margin: 0 auto;
+      filter: drop-shadow(0 0 1rem rgb(0 0 0 / 0.75));
+    }
+
+    header {
+      display: grid;
+      grid-gap: 0;
+      height: min(100vh, 40rem);
+      overflow-y: auto;
+      grid-template-areas: "info" "h1" "aside";
+      grid-template-rows: 1fr calc(var(--main-width) * 0.1) calc(var(--main-width) * 0.15);
+    }
+    header > h1 {
+      grid-area: h1;
+      font-size: calc(var(--main-width) * 0.1125);
+      color: hsl(var(--at-prop-bg));
+      max-height: 100%;
+      padding-left: 1rem;
+    }
+    header > aside {
+      grid-area: aside;
+      display: grid;
+      background: linear-gradient(
+        to top,
+        hsl(var(--theme_1)) 0% 6%,
+        hsl(var(--theme_4)) 6% 14%,
+        hsl(var(--theme_1)) 14% 20%,
+        hsl(var(--at-prop-bg)) 20%
+      );
+      color: hsl(var(--at-prop-color));
+      --sm-pad: var(--media-lte-sm) 0.75rem;
+      padding: var(--sm-pad, 1.5rem);
+      text-align: center;
+      font-size: calc(var(--main-width) * 0.03);
+    }
+    .bg-stripes-wrapper {
+      position: absolute;
+      width: 100%;
+      max-width: 100%;
+      height: min(100vh, 40rem);
+      overflow: hidden;
+    }
+    .bg-stripes {
+      position: absolute;
+      pointer-events: none;
+      width: 150%;
+      height: 120%;
+      right: calc(var(--rail-width) - var(--main-width) * 0.25);
+      bottom: 3%;
+      --aug-br: calc(var(--main-width) * 0.15);
+      --aug-border-all: calc(var(--main-width) * 0.15 * 0.08);
+      --aug-inlay-all: calc(var(--main-width) * 0.15 * 0.06);
+      --aug-border-bg: hsl(var(--theme_4));
+      --aug-inlay-bg: linear-gradient(
+        to left,
+        hsl(var(--at-prop-bg)) calc(var(--main-width) * 0.15 * 0.94),
+        transparent calc(var(--main-width) * 0.15 * 0.94)
+      ), linear-gradient(
+        to top,
+        hsl(var(--at-prop-bg)) calc(var(--main-width) * 0.15 * 0.94),
+        transparent calc(var(--main-width) * 0.15 * 0.94)
+      ), linear-gradient(
+        -45deg,
+        hsl(var(--at-prop-bg)) calc(var(--main-width) * 0.15 * 1.66),
+        transparent calc(var(--main-width) * 0.15 * 1.66)
+      );
+    }
+
+    .info {
+      grid-area: info;
+      padding: 1rem;
+      color: hsl(var(--theme_0));
+      --sm-fs: var(--media-lte-sm) 1rem;
+      font-size: var(--sm-fs, 1.5rem);
+      --sm-align: var(--media-lte-sm) left;
+      text-align: var(--sm-align, center);
+      display: grid;
+    }
+
+    .info .note {
+      display: block;
+      margin: 0.75rem;
+      font-size: var(--sm-fs, 1.25rem);
+      opacity: 0.75;
+      text-align: left;
+    }
+
+    header nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-bottom: 1rem;
+      max-height: 2rem;
+    }
+    header nav :global(a:first-child) {
+      margin-right: auto;
+      background: transparent;
+      opacity: 0.6;
+      transition: opacity 0.33s linear, filter 0.33s linear;
+      z-index: 9999;
+      will-change: filter;
+    }
+    header nav :global(a:first-child:hover) {
+      opacity: 1;
+      filter: brightness(1.5) drop-shadow(0 0 1rem hsl(var(--theme_0)));
+    }
+    header nav :global(a path) {
+      fill: hsl(var(--at-prop-bg));
+    }
+    header nav :global(a:hover path) {
+      fill: hsl(var(--at-prop-color));
+    }
+
+    .supported {
+      --hide-unsupported: var(--media-at-property-unsupported) none;
+      display: var(--hide-unsupported, block);
+    }
+    .not-supported {
+      --show-unsupported: var(--media-at-property-unsupported) block;
+      display: var(--show-unsupported, none);
+    }
+    .install {
+      padding: 1rem;
+      line-height: 1.5;
+      display: grid;
+      --smol-col1: var(--media-lte-sm) 4rem;
+      grid-template-columns: var(--smol-col1, 7rem) 1fr;
+      grid-gap: 0.5rem;
+      max-width: 45rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .install h2,
+    .install h3 {
+      --smol-col1: var(--media-lte-sm) 1rem;
+      font-size: var(--smol-col1, 1.25rem);
+    }
+    .nowrap {
+      white-space: nowrap;
+    }
+    .note ul {
+      margin-left: 1rem;
+    }
+    .hide-on-small-screens {
+      --hidesmol: var(--media-lte-sm) none;
+      display: var(--hidesmol, initial);
+    }
+  </style>
+</head>
+<body>
+  <div aria-hidden="true" class="bg-stripes-wrapper"><div class="bg-stripes" data-augmented-ui="br-clip both"></div></div>
+  <div class="main-wrapper">
+    <main data-augmented-ui="both bl-clip br-clip">
+      <header>
+        <h1>css-bin-bits</h1>
+        <div class="info">
+          <nav>
+            <PJLink />
+            <NPMLink />
+            <GitHubLink />
+            <TwitterLink />
+          </nav>
+          <p>
+            <dfn>css-bin-bits</dfn>
+            is a CSS file that establishes an API for binary operations of <br class="hide-on-small-screens">
+            <span class="nowrap">--number-vars</span> clamped to the +/- 16bit range <span class="nowrap">[-65535, 65535]</span>
+          </p>
+          <div class="note">
+            <span>With css-bin-bits, you'll be able to:</span>
+            <ul>
+              <li>read &amp; write individual bits of a number</li>
+              <li>execute Modulo operations</li>
+              <li>bit-shift&nbsp;left/right</li>
+              <li>combine numbers using standard logic gates (AND, NAND, OR, NOR, XOR)</li>
+              <li>and more, all from your CSS</li>
+            </ul>
+          </div>
+          <p>
+            No JS is involved, but it requires <a href="https://caniuse.com/mdn-css_at-rules_property">CSS&nbsp;@property&nbsp;support</a> from&nbsp;the&nbsp;Houdini&nbsp;spec.
+          </p>
+        </div>
+        <aside>
+          <strong class="supported">🎉 Your browser <em>DOES</em> support @property! 🎉</strong>
+          <strong class="not-supported">⚠️ Your browser <em>DOES NOT</em> support @property! ⚠️</strong>
+        </aside>
+      </header>
+
+      <article class="install">
+        <h2>Install:</h2>
+        <code class="console">npm install css-bin-bits</code>
+        <h3>Import:</h3>
+        <code>import "node_modules/css-bin-bits/bin-bits.css"</code>
+        <b>OR</b>
+        <div>
+          Use your favorite NPM CDN and include it on your page for small projects:<br>
+          <code>&lt;link rel="stylesheet" type="text/css" href="https://unpkg.com/css-bin-bits@0.0.1/bin-bits.css"&gt;</code>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <InputDocs />
+
+  <OutputDocs />
+
+  <LogicGates />
+
+</body>
+</html>

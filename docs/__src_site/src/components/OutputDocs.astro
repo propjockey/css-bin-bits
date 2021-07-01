@@ -1,0 +1,196 @@
+---
+import "augmented-ui/augmented-ui.min.css"
+import "css-media-vars/css-media-vars.css"
+---
+
+<style>
+  .retro-light-in {
+    height: 18rem;
+    width: calc(var(--main-width) * 0.45);
+    margin: -9rem auto;
+    pointer-events: none;
+    background: linear-gradient(
+      to right,
+      hsl(var(--theme_2)) 0 16%,
+      transparent 16% 21%,
+      hsl(var(--theme_3)) 21% 37%,
+      transparent 37% 42%,
+      hsl(var(--theme_4)) 42% 58%,
+      transparent 58% 63%,
+      hsl(var(--theme_3)) 63% 79%,
+      transparent 79% 84%,
+      hsl(var(--theme_2)) 84% 100%
+    );
+  }
+
+  .output-section {
+    position: relative;
+    overflow: hidden;
+    filter: drop-shadow(0 0 1rem rgb(0 0 0 / 0.75));
+  }
+  .output-section article {
+    width: var(--main-width);
+    max-width: 100%;
+    position: relative;
+    background: hsl(var(--theme_1));
+    --sm-pad: var(--media-lte-sm) 1rem;
+    padding: var(--sm-pad, 2rem);
+    padding-top: 2rem;
+    --sm-fs: var(--media-lte-sm) 1rem;
+    font-size: var(--sm-fs, 1.25rem);
+    line-height: 1.33;
+    margin: 0 auto;
+    margin-top: 8rem;
+    --sm-clip: var(--media-lte-sm) 0.25rem;
+    --aug-border-all: calc(var(--main-width) * 0.15 * 0.08);
+    --aug-border-bg: hsl(var(--at-prop-bg));
+    --aug-t: 1rem;
+    --aug-t-center: 50%;
+    --aug-t-extend1: 45%;
+    --aug-clip-tr1: initial;
+    --aug-clip-bl1: initial;
+    --aug-tr1: calc(var(--main-width) / 8);
+    --aug-bl1: calc(var(--main-width) / 8);
+    --aug-b: 1rem;
+    --aug-b-center: 50%;
+    --aug-b-extend1: 45%;
+    padding-bottom: 8rem;
+  }
+
+  article section {
+    margin-top: 2rem;
+  }
+
+  h2 {
+    display: block;
+    --sm: var(--media-xs) 1.25rem;
+    font-size: var(--sm, 2rem);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    --sm: var(--media-xs) 1.125rem;
+    font-size: var(--sm, 1.5rem);
+    margin-bottom: 1rem;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  code {
+    margin: 0.25rem;
+  }
+  article p {
+    margin: 0.25rem;
+    margin-top: 1rem;
+  }
+  samp[data-bin-bits]::after {
+    --bin-a-NOT: inherit;
+    counter-reset: o calc(var(--bin-a-NOT));
+    content: counter(o);
+  }
+
+  .notice {
+    height: 1rem;
+    margin: 0 auto;
+    width: 90%;
+    background: repeating-linear-gradient(
+      to right,
+      hsl(var(--theme_4)) 0 0.25rem,
+      transparent 0.25rem 1rem
+    );
+    transform: skewX(-15deg);
+  }
+</style>
+
+<div class="retro-light-in" aria-hidden="true"></div>
+<section class="output-section">
+  <article data-augmented-ui="border t-clip-x b-clip-x" id="output-docs">
+    <a href="#output-docs" aria-label="page jump here"></a><h2>css-bin-bits → Output</h2>
+    <p>
+      The inputs <code>--bin-a-sign</code>, <code>--bin-a-1</code>, <code>--bin-a-16</code>, <code>--bin-f-8</code>, etc are all outputs as well.<br>
+      The sign output will contain either 1 or -1.<br>
+      Each of the bits contains the expected 0 or 1: either its override, or the original expected bit from the absolute value* of the 16bit input number.<br>
+      All other output from an input set is an integer result of a calculation from those bits.
+    </p>
+    <br>
+    <div aria-hidden="true" class="notice"></div>
+    <p id="request-for-feedback">
+      * <strong>I am looking for strong opinions on this!</strong> (especially ones backed with a use case in CSS)<br>
+      Cards on the table, I don't know if binary math on integers is useful in CSS because I've never considered it as a possibility when creating something.<br>
+      As a result, I do no not know the use cases beyond generically helping with patterns; So negative numbers are currently handled minimally.<br>
+      (In this early first release, negative numbers are treated as their absolute value, then the sign value is only considered on signed outputs.)<br>
+      <em>Should the bits from a negative number input at least be inverted?</em> (ehh..)<br>
+      <em>Should they use two's complement?</em> (technically, probably yes, but subjectively in this context...?)<br>
+      <em>Would either of those directions help MORE in the world of CSS art and design?</em><br>
+      <a href="https://tiwtter.com/James0x57">Please contact me (Jane) on Twitter with any feedback!</a>
+    </p>
+    <div aria-hidden="true" class="notice"></div>
+    <br>
+    <section id="output-values">
+      <h3>Direct values and their NOT values:</h3>
+      <code>&lt;div data-bin-bits="a" style="--bin-a-round: -1.5;"&gt;&lt;/div&gt;</code><br>
+      <code>&lt;div data-bin-bits="a" style="--bin-a-round: 999; --bin-a-1: 0;"&gt;&lt;/div&gt;</code><br>
+      <code>&lt;div data-bin-bits="a" style="--bin-a-round: 64537; --bin-a-3: 1;"&gt;&lt;/div&gt;</code><br>
+      <p>
+        Given the inputs above, <code><b>--bin-a-VAL</b></code> will contain <samp>2</samp>, <samp>998</samp>, and <samp>64541</samp> respectively.<br>
+        This is the absolute value of the bits.<br>
+        Given the same inputs, <code><b>--bin-a-NOT</b></code> will contain <samp>65533</samp>, <samp>64537</samp>, and <samp>995</samp> respectively.<br>
+        This is the NOT of absolute value of the bits.<br>
+      </p>
+      <p>
+        Given the inputs above, <code><b>--bin-a-SIGNED</b></code> will contain <samp>-2</samp>, <samp>998</samp>, and <samp>64541</samp> respectively.<br>
+        This is the absolute value of the bits with the original sign.<br>
+        Given the same inputs, <code><b>--bin-a-SIGNED-NOT</b></code> will contain <samp>65533</samp>, <samp>-64537</samp>, and <samp>-995</samp> respectively.<br>
+        This is the NOT of absolute value of the bits with the opposite of the original sign.<br>
+      </p>
+    </section>
+    <section id="output-meta-flags">
+      <h3>Helpful flag outputs:</h3>
+      <code>&lt;div data-bin-bits="a" style="--bin-a-trunc: -1.5;"&gt;&lt;/div&gt;</code><br>
+      <code>&lt;div data-bin-bits="a" style="--bin-a-trunc: 1 + 0.499;"&gt;&lt;/div&gt;</code><br>
+      <code>&lt;div data-bin-bits="a" style="--bin-a-trunc: 67001;"&gt;&lt;/div&gt;</code><br>
+      <p>
+        <code>--bin-a-POS</code> will contain a 1 if sign is 1, and will contain a 0 if sign is -1.<br>
+        <code>--bin-a-NEG</code> will contain a 0 if sign is 1, and will contain a 1 if sign is -1.<br>
+        <code>--bin-a-EVEN</code> will contain a 1 if the first bit is 0, else it will contain a 0.<br>
+        <code>--bin-a-ODD</code> is an alias of the first bit. (Will be 1 for odd numbers, else 0.)<br>
+      </p>
+    </section>
+    <section id="output-modulo-operations">
+      <h3>Modulo:</h3>
+      <code>&lt;div data-bin-bits="a" style="--bin-a-trunc: 9374; <b>--bin-a-mod</b>: 5;"&gt;&lt;/div&gt;</code><br>
+      <code>&lt;div data-bin-bits="a" style="--bin-a-trunc: 3; <b>--bin-a-mod</b>: 3;"&gt;&lt;/div&gt;</code><br>
+      <code>&lt;div data-bin-bits="a" style="--bin-a-trunc: 6; --bin-a-1: 1; <b>--bin-a-mod</b>: 10;"&gt;&lt;/div&gt;</code><br>
+      <p>
+        Given the inputs and <code>--bin-a-mod</code> value above, respectively, <code>--bin-a-MOD</code> will be: <samp>4</samp>, <samp>0</samp>, <samp>7</samp><br>
+        The input (lowercase variable <code>--bin-a-mod</code>) must be a positive integer greater than 0.
+      </p>
+      <p>
+        <a href="https://twitter.com/anatudor/status/1399849494628425734">Thank you, Ana!</a>
+      </p>
+    </section>
+    <section id="output-bit-shifting">
+      <h3>Bit Shifting</h3>
+      <code>&lt;div data-bin-bits="a" style="--bin-a-trunc: -23; <b>--bin-a-shift</b>: 1;"&gt;&lt;/div&gt;</code><br>
+      <p>
+        <code>--bin-a-shift</code> must be an integer in range [0, 15]<br>
+        Given the input and shift value above, you get 3 different outputs:<br>
+        <code>--bin-a-LEFT</code> will be: <samp>46</samp> (absolute value of the input, shifted left 1)<br>
+        <code>--bin-a-RIGHT</code> will be: <samp>11</samp> (absolute value of the input, shifted right 1 and truncated to int)<br>
+        <code>--bin-a-SIGNED-RIGHT</code> will be: <samp>-32779</samp><br>
+        SIGNED-RIGHT is the absolute value of the input, shifted right 1 (and left-filled with 1s because the input is negative)<br>
+        If passed into another input set:<br>
+        <code>&lt;div data-bin-bits="a b" style="--bin-a-trunc: -23; --bin-a-shift: 1; <b>--bin-b-trunc: var(--bin-a-SIGNED-RIGHT);</b>"&gt;&lt;/div&gt;</code><br>
+        the bits from #16 to #1 will be 1000000000001011.<br>
+        ⚠️ Before a version 1.0.0 release, the bit form of negative numbers will likely change and the span of 0's here are likely to be 1s from a Two's Complement representation.
+        (<a href="#request-for-feedback" style="position: static; display: inline;">see note above</a>)
+      </p>
+    </section>
+  </article>
+</section>

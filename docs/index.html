@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="en"><head><link rel="stylesheet" href="/_astro/index-1klAPm.css" type="text/css"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>css-bin-bits - a vanilla CSS API for binary operations and bit manipulation of 16 bit numbers</title><link rel="icon" type="image/png" href="/favicon.png"><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-146833088-2"></script><script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-146833088-2');
+  </script><style type="text/css">
+    main.astro-ldKR6c5M {
+      width: var(--main-width);
+      max-width: 100%;
+      position: relative;
+      margin: 0 auto;
+      background: hsl(var(--theme_1));
+      --aug-bl: calc(var(--main-width) / 8);
+      --aug-br: calc(var(--main-width) / 8);
+      --aug-border-all: calc(var(--main-width) * 0.15 * 0.08);
+      --aug-inlay-all: calc(var(--main-width) * 0.15 * 0.06);
+      --asdfs: calc(var(--main-width) / 7.85);
+      --aug-border-bg: linear-gradient(
+        45deg,
+        hsl(var(--at-prop-bg)) var(--asdfs),
+        transparent var(--asdfs)
+      ), linear-gradient(
+        -45deg,
+        hsl(var(--at-prop-bg)) var(--asdfs),
+        transparent var(--asdfs)
+      ), linear-gradient(
+        to top,
+        hsl(var(--at-prop-bg)) var(--aug-bl),
+        transparent var(--aug-bl)
+      );
+      --aug-inlay-bg: linear-gradient(
+        to top,
+        hsl(var(--theme_2)) 1.75rem,
+        hsl(var(--theme_1)) 1.75rem 2.25rem,
+        hsl(var(--theme_2)) 2.25rem 3rem,
+        transparent 3rem
+      );
+      padding-bottom: 5rem;
+    }
+    .main-wrapper.astro-ldKR6c5M {
+      width: var(--main-width);
+      max-width: 100%;
+      margin: 0 auto;
+      filter: drop-shadow(0 0 1rem rgb(0 0 0 / 0.75));
+    }
+
+    header.astro-ldKR6c5M {
+      display: grid;
+      grid-gap: 0;
+      height: min(100vh, 40rem);
+      overflow-y: auto;
+      grid-template-areas: "info" "h1" "aside";
+      grid-template-rows: 1fr calc(var(--main-width) * 0.1) calc(var(--main-width) * 0.15);
+    }
+    header.astro-ldKR6c5M > h1.astro-ldKR6c5M {
+      grid-area: h1;
+      font-size: calc(var(--main-width) * 0.1125);
+      color: hsl(var(--at-prop-bg));
+      max-height: 100%;
+      padding-left: 1rem;
+    }
+    header.astro-ldKR6c5M > aside.astro-ldKR6c5M {
+      grid-area: aside;
+      display: grid;
+      background: linear-gradient(
+        to top,
+        hsl(var(--theme_1)) 0% 6%,
+        hsl(var(--theme_4)) 6% 14%,
+        hsl(var(--theme_1)) 14% 20%,
+        hsl(var(--at-prop-bg)) 20%
+      );
+      color: hsl(var(--at-prop-color));
+      --sm-pad: var(--media-lte-sm) 0.75rem;
+      padding: var(--sm-pad, 1.5rem);
+      text-align: center;
+      font-size: calc(var(--main-width) * 0.03);
+    }
+    .bg-stripes-wrapper.astro-ldKR6c5M {
+      position: absolute;
+      width: 100%;
+      max-width: 100%;
+      height: min(100vh, 40rem);
+      overflow: hidden;
+    }
+    .bg-stripes.astro-ldKR6c5M {
+      position: absolute;
+      pointer-events: none;
+      width: 150%;
+      height: 120%;
+      right: calc(var(--rail-width) - var(--main-width) * 0.25);
+      bottom: 3%;
+      --aug-br: calc(var(--main-width) * 0.15);
+      --aug-border-all: calc(var(--main-width) * 0.15 * 0.08);
+      --aug-inlay-all: calc(var(--main-width) * 0.15 * 0.06);
+      --aug-border-bg: hsl(var(--theme_4));
+      --aug-inlay-bg: linear-gradient(
+        to left,
+        hsl(var(--at-prop-bg)) calc(var(--main-width) * 0.15 * 0.94),
+        transparent calc(var(--main-width) * 0.15 * 0.94)
+      ), linear-gradient(
+        to top,
+        hsl(var(--at-prop-bg)) calc(var(--main-width) * 0.15 * 0.94),
+        transparent calc(var(--main-width) * 0.15 * 0.94)
+      ), linear-gradient(
+        -45deg,
+        hsl(var(--at-prop-bg)) calc(var(--main-width) * 0.15 * 1.66),
+        transparent calc(var(--main-width) * 0.15 * 1.66)
+      );
+    }
+
+    .info.astro-ldKR6c5M {
+      grid-area: info;
+      padding: 1rem;
+      color: hsl(var(--theme_0));
+      --sm-fs: var(--media-lte-sm) 1rem;
+      font-size: var(--sm-fs, 1.5rem);
+      --sm-align: var(--media-lte-sm) left;
+      text-align: var(--sm-align, center);
+      display: grid;
+    }
+
+    .info.astro-ldKR6c5M .note.astro-ldKR6c5M {
+      display: block;
+      margin: 0.75rem;
+      font-size: var(--sm-fs, 1.25rem);
+      opacity: 0.75;
+      text-align: left;
+    }
+
+    header.astro-ldKR6c5M nav.astro-ldKR6c5M {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-bottom: 1rem;
+      max-height: 2rem;
+    }
+    header.astro-ldKR6c5M nav.astro-ldKR6c5M a:first-child {
+      margin-right: auto;
+      background: transparent;
+      opacity: 0.6;
+      transition: opacity 0.33s linear, filter 0.33s linear;
+      z-index: 9999;
+      will-change: filter;
+    }
+    header.astro-ldKR6c5M nav.astro-ldKR6c5M a:first-child:hover {
+      opacity: 1;
+      filter: brightness(1.5) drop-shadow(0 0 1rem hsl(var(--theme_0)));
+    }
+    header.astro-ldKR6c5M nav.astro-ldKR6c5M a path {
+      fill: hsl(var(--at-prop-bg));
+    }
+    header.astro-ldKR6c5M nav.astro-ldKR6c5M a:hover path {
+      fill: hsl(var(--at-prop-color));
+    }
+
+    .supported.astro-ldKR6c5M {
+      --hide-unsupported: var(--media-at-property-unsupported) none;
+      display: var(--hide-unsupported, block);
+    }
+    .not-supported.astro-ldKR6c5M {
+      --show-unsupported: var(--media-at-property-unsupported) block;
+      display: var(--show-unsupported, none);
+    }
+    .install.astro-ldKR6c5M {
+      padding: 1rem;
+      line-height: 1.5;
+      display: grid;
+      --smol-col1: var(--media-lte-sm) 4rem;
+      grid-template-columns: var(--smol-col1, 7rem) 1fr;
+      grid-gap: 0.5rem;
+      max-width: 45rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .install.astro-ldKR6c5M h2.astro-ldKR6c5M,
+.astro-ldKR6c5M    .install.astro-ldKR6c5M h3.astro-ldKR6c5M {
+      --smol-col1: var(--media-lte-sm) 1rem;
+      font-size: var(--smol-col1, 1.25rem);
+    }
+    .nowrap.astro-ldKR6c5M {
+      white-space: nowrap;
+    }
+    .note.astro-ldKR6c5M ul.astro-ldKR6c5M {
+      margin-left: 1rem;
+    }
+    .hide-on-small-screens.astro-ldKR6c5M {
+      --hidesmol: var(--media-lte-sm) none;
+      display: var(--hidesmol, initial);
+    }
+  </style></head><body><div aria-hidden="true" class="bg-stripes-wrapper astro-ldKR6c5M"><div class="bg-stripes astro-ldKR6c5M" data-augmented-ui="br-clip both"></div></div><div class="main-wrapper astro-ldKR6c5M"><main data-augmented-ui="both bl-clip br-clip" class="astro-ldKR6c5M"><header class="astro-ldKR6c5M"><h1 class="astro-ldKR6c5M">css-bin-bits</h1><div class="info astro-ldKR6c5M"><nav class="astro-ldKR6c5M"><a href="https://github.com/propjockey/" title="Check out many more projects from PropJockey!" class="astro-jNfvjy2L"><img src="/assets/propjockey.png" alt="PropJockey Logo" class="astro-jNfvjy2L"></a><a href="https://www.npmjs.com/package/css-bin-bits" title="Install css-bin-bits from NPM!" class="astro-3kvamkbM"><svg style="height: 1.25rem;" viewBox="0 0 905 290" class="astro-3kvamkbM"><path fill="#ffffff" d="M240,250h100v-50h100V0H240V250z M340,50h50v100h-50V50z M480,0v200h100V50h50v150h50V50h50v150h50V0H480z M0,200h100V50h50v150h50V0H0V200z" class="astro-3kvamkbM"></path></svg></a><a href="https://github.com/propjockey/css-bin-bits" title="Leave a star for augmented-ui on GitHub!" class="astro-ARhyM7ha"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6 34 34" class="astro-ARhyM7ha"><path fill="#ffffff" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" class="astro-ARhyM7ha"></path></svg></a><a href="https://twitter.com/James0x57" title="Follow css-bin-bits development on Twitter!" class="astro-lcj5xD8w"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -15 400 385" class="astro-lcj5xD8w"><path fill="#ffffff" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23" class="astro-lcj5xD8w"></path></svg></a></nav><p class="astro-ldKR6c5M"><dfn class="astro-ldKR6c5M">css-bin-bits</dfn>
+            is a CSS file that establishes an API for binary operations of <br class="hide-on-small-screens astro-ldKR6c5M"><span class="nowrap astro-ldKR6c5M">--number-vars</span> clamped to the +/- 16bit range <span class="nowrap astro-ldKR6c5M">[-65535, 65535]</span></p><div class="note astro-ldKR6c5M"><span class="astro-ldKR6c5M">With css-bin-bits, you'll be able to:</span><ul class="astro-ldKR6c5M"><li class="astro-ldKR6c5M">read &amp; write individual bits of a number</li><li class="astro-ldKR6c5M">execute Modulo operations</li><li class="astro-ldKR6c5M">bit-shift&nbsp;left/right</li><li class="astro-ldKR6c5M">combine numbers using standard logic gates (AND, NAND, OR, NOR, XOR)</li><li class="astro-ldKR6c5M">and more, all from your CSS</li></ul></div><p class="astro-ldKR6c5M">
+            No JS is involved, but it requires <a href="https://caniuse.com/mdn-css_at-rules_property" class="astro-ldKR6c5M">CSS&nbsp;@property&nbsp;support</a> from&nbsp;the&nbsp;Houdini&nbsp;spec.
+          </p></div><aside class="astro-ldKR6c5M"><strong class="supported astro-ldKR6c5M">🎉 Your browser <em class="astro-ldKR6c5M">DOES</em> support @property! 🎉</strong><strong class="not-supported astro-ldKR6c5M">⚠️ Your browser <em class="astro-ldKR6c5M">DOES NOT</em> support @property! ⚠️</strong></aside></header><article class="install astro-ldKR6c5M"><h2 class="astro-ldKR6c5M">Install:</h2><code class="console astro-ldKR6c5M">npm install css-bin-bits</code><h3 class="astro-ldKR6c5M">Import:</h3><code class="astro-ldKR6c5M">import "node_modules/css-bin-bits/bin-bits.css"</code><b class="astro-ldKR6c5M">OR</b><div class="astro-ldKR6c5M">
+          Use your favorite NPM CDN and include it on your page for small projects:<br class="astro-ldKR6c5M"><code class="astro-ldKR6c5M">&lt;link rel="stylesheet" type="text/css" href="https://unpkg.com/css-bin-bits@0.0.1/bin-bits.css"&gt;</code></div></article></main></div><div class="retro-light-in astro-pqhubM3E" aria-hidden="true"></div><section class="input-section astro-pqhubM3E"><article data-augmented-ui="border l-clip-y b-rect-x" id="input-docs" class="astro-pqhubM3E"><a href="#input-docs" aria-label="page jump here" class="astro-pqhubM3E"></a><h2 class="astro-pqhubM3E">Input → css-bin-bits</h2><p class="astro-pqhubM3E">
+      To attach the css-bin-bits API to an element, add the data attribute: <code class="astro-pqhubM3E">data-bin-bits="a"</code><br class="astro-pqhubM3E">
+      Now you can pass a number into one of the entry points for rounding or truncation.<br class="astro-pqhubM3E">
+      The number can be an expression, calc(), or var() that results in a number.<br class="astro-pqhubM3E">
+      Units (such as px, %, or deg) must not be part of the input.
+    </p><section id="input-rounding" class="astro-pqhubM3E"><h3 class="astro-pqhubM3E">Rounding:</h3><code class="astro-pqhubM3E">&lt;div data-bin-bits="a" style="<b class="astro-pqhubM3E">--bin-a-round</b>: -1.5;"&gt;&lt;/div&gt;</code><br class="astro-pqhubM3E"><code class="astro-pqhubM3E">&lt;div data-bin-bits="a" style="<b class="astro-pqhubM3E">--bin-a-round</b>: 1 + 0.499;"&gt;&lt;/div&gt;</code><br class="astro-pqhubM3E"><code class="astro-pqhubM3E">&lt;div data-bin-bits="a" style="<b class="astro-pqhubM3E">--bin-a-round</b>: (40 * 1000 + 1) * -2;"&gt;&lt;/div&gt;</code><br class="astro-pqhubM3E"><p class="astro-pqhubM3E">
+        The input <code class="astro-pqhubM3E">--bin-a-round</code> is clamped first to +/- 16bits <span class="nowrap astro-pqhubM3E">[-65535, 65535]</span>,
+        then the rounding algorithm (+/- 0.5 away-from-zero) is applied.<br class="astro-pqhubM3E">
+        Therefore the above numbers, respectively, produce: <samp class="astro-pqhubM3E">-2</samp>, <samp class="astro-pqhubM3E">1</samp>, <samp class="astro-pqhubM3E">-65535</samp></p></section><section id="input-truncation" class="astro-pqhubM3E"><h3 class="astro-pqhubM3E">Truncation:</h3><code class="astro-pqhubM3E">&lt;div data-bin-bits="a" style="<b class="astro-pqhubM3E">--bin-a-trunc</b>: -1.5;"&gt;&lt;/div&gt;</code><br class="astro-pqhubM3E"><code class="astro-pqhubM3E">&lt;div data-bin-bits="a" style="<b class="astro-pqhubM3E">--bin-a-trunc</b>: 1 + 0.499;"&gt;&lt;/div&gt;</code><br class="astro-pqhubM3E"><code class="astro-pqhubM3E">&lt;div data-bin-bits="a" style="<b class="astro-pqhubM3E">--bin-a-trunc</b>: 67001;"&gt;&lt;/div&gt;</code><br class="astro-pqhubM3E"><p class="astro-pqhubM3E">
+        The input <code class="astro-pqhubM3E">--bin-a-trunc</code> is clamped first to +/- 16bits <span class="nowrap astro-pqhubM3E">[-65535, 65535]</span>, then truncated towards 0.<br class="astro-pqhubM3E">
+        Therefore the above numbers, respectively, produce: <samp class="astro-pqhubM3E">-1</samp>, <samp class="astro-pqhubM3E">1</samp>, <samp class="astro-pqhubM3E">65535</samp></p></section><p class="astro-pqhubM3E">
+      If both *-round and *-trunc are provided, the value from *-round is used and *-trunc is ignored.
+    </p><section id="input-bit-overrides" class="astro-pqhubM3E"><h3 class="astro-pqhubM3E">Overriding Bits:</h3><code class="astro-pqhubM3E">&lt;div data-bin-bits="a" style="--bin-a-trunc: 5; <b class="astro-pqhubM3E">--bin-a-1</b>: 0;"&gt;&lt;/div&gt;</code><br class="astro-pqhubM3E"><code class="astro-pqhubM3E">&lt;div data-bin-bits="a" style="--bin-a-trunc: 5; <b class="astro-pqhubM3E">--bin-a-2</b>: 1;"&gt;&lt;/div&gt;</code><br class="astro-pqhubM3E"><code class="astro-pqhubM3E">&lt;div data-bin-bits="a" style="--bin-a-trunc: 5; <b class="astro-pqhubM3E">--bin-a-3</b>: 0; <b class="astro-pqhubM3E">--bin-a-4</b>: 1;"&gt;&lt;/div&gt;</code><br class="astro-pqhubM3E"><p class="astro-pqhubM3E">
+        Given the inputs above, respectively, you get:<br class="astro-pqhubM3E">
+        5 (0000000000000101) with bit 1 set to 0 (0000000000000100) results in <samp class="astro-pqhubM3E">4</samp><br class="astro-pqhubM3E">
+        5 (0000000000000101) with bit 2 set to 1 (0000000000000111) results in <samp class="astro-pqhubM3E">7</samp><br class="astro-pqhubM3E">
+        5 (0000000000000101) with bit 3 set to 0 and bit 4 set to 1 (0000000000001001) results in <samp class="astro-pqhubM3E">9</samp></p><p class="astro-pqhubM3E">
+        Each of the 16 bits from 1 to 16 can be overwritten as expected:<br class="astro-pqhubM3E">
+        --bin-a-1: 0; sets the first (least significant) bit to <samp class="astro-pqhubM3E">0</samp><br class="astro-pqhubM3E">
+        --bin-a-9: 1; sets the ninth bit to <samp class="astro-pqhubM3E">1</samp><br class="astro-pqhubM3E">
+        --bin-a-16: 1; sets the sixteenth (most significant) bit to <samp class="astro-pqhubM3E">1</samp></p><div class="astro-pqhubM3E"><h4 class="astro-pqhubM3E">Caution! ⚠️</h4>
+        If you override a bit, it must be set directly to 1 or 0, or be a calc/min/max/clamp
+        that results in a unitless number that would round to 1 or 0.<br class="astro-pqhubM3E">
+        for example:<br class="astro-pqhubM3E">
+        --bin-a-1: 1.3; does not work<br class="astro-pqhubM3E">
+        --bin-a-1: 1 + 0.3; does not work<br class="astro-pqhubM3E">
+        --bin-a-1: calc(1.3); will work<br class="astro-pqhubM3E">
+        --bin-a-1: calc(1.5); does not work<br class="astro-pqhubM3E">
+        --bin-a-1: clamp(0, 1.5, 1); will work<br class="astro-pqhubM3E">
+        Arbitrarily-bad-things will happen if any of them are set to anything other
+        than 1 or 0, behavior is not defined or to be relied upon for any other values!
+      </div></section><section id="multiple-inputs" class="astro-pqhubM3E"><h3 class="astro-pqhubM3E">Multiple input sets on a single element</h3><code class="astro-pqhubM3E">
+        &lt;div <b class="astro-pqhubM3E">data-bin-bits="a b c"</b><br class="astro-pqhubM3E">
+        &nbsp;&nbsp;style="<br class="astro-pqhubM3E">
+        &nbsp;&nbsp;&nbsp;&nbsp;--bin-a-round: -1.5;<br class="astro-pqhubM3E">
+        &nbsp;&nbsp;&nbsp;&nbsp;--bin-b-trunc: 99.9;<br class="astro-pqhubM3E">
+        &nbsp;&nbsp;&nbsp;&nbsp;--bin-c-round: 0;<br class="astro-pqhubM3E">
+        &nbsp;&nbsp;&nbsp;&nbsp;--bin-c-3: 1;<br class="astro-pqhubM3E">
+        &nbsp;&nbsp;"<br class="astro-pqhubM3E">
+        &gt;&lt;/div&gt;
+      </code><br class="astro-pqhubM3E"><p class="astro-pqhubM3E">
+        You can use up to 6 input sets on a single element.<br class="astro-pqhubM3E">
+        The sets are named <code class="astro-pqhubM3E">a</code>, <code class="astro-pqhubM3E">b</code>, <code class="astro-pqhubM3E">c</code>, <code class="astro-pqhubM3E">d</code>, <code class="astro-pqhubM3E">e</code>, and <code class="astro-pqhubM3E">f</code>.<br class="astro-pqhubM3E">
+        The css-bin-bits API becomes available for an element, for each input, by
+        placing the set's name in the space-delimited <code class="astro-pqhubM3E">data-bin-bits</code> attribute value, like in the example above.<br class="astro-pqhubM3E">
+        You can provide input values from your CSS files as long as the <code class="astro-pqhubM3E">data-bin-bits</code> attribute is set accordingly.
+        (the input values do not need to be set from the inline style="" attribute).
+      </p></section></article></section><div class="retro-light-in astro-IX0hxfND" aria-hidden="true"></div><section class="output-section astro-IX0hxfND"><article data-augmented-ui="border t-clip-x b-clip-x" id="output-docs" class="astro-IX0hxfND"><a href="#output-docs" aria-label="page jump here" class="astro-IX0hxfND"></a><h2 class="astro-IX0hxfND">css-bin-bits → Output</h2><p class="astro-IX0hxfND">
+      The inputs <code class="astro-IX0hxfND">--bin-a-sign</code>, <code class="astro-IX0hxfND">--bin-a-1</code>, <code class="astro-IX0hxfND">--bin-a-16</code>, <code class="astro-IX0hxfND">--bin-f-8</code>, etc are all outputs as well.<br class="astro-IX0hxfND">
+      The sign output will contain either 1 or -1.<br class="astro-IX0hxfND">
+      Each of the bits contains the expected 0 or 1: either its override, or the original expected bit from the absolute value* of the 16bit input number.<br class="astro-IX0hxfND">
+      All other output from an input set is an integer result of a calculation from those bits.
+    </p><br class="astro-IX0hxfND"><div aria-hidden="true" class="notice astro-IX0hxfND"></div><p id="request-for-feedback" class="astro-IX0hxfND">
+      * <strong class="astro-IX0hxfND">I am looking for strong opinions on this!</strong> (especially ones backed with a use case in CSS)<br class="astro-IX0hxfND">
+      Cards on the table, I don't know if binary math on integers is useful in CSS because I've never considered it as a possibility when creating something.<br class="astro-IX0hxfND">
+      As a result, I do no not know the use cases beyond generically helping with patterns; So negative numbers are currently handled minimally.<br class="astro-IX0hxfND">
+      (In this early first release, negative numbers are treated as their absolute value, then the sign value is only considered on signed outputs.)<br class="astro-IX0hxfND"><em class="astro-IX0hxfND">Should the bits from a negative number input at least be inverted?</em> (ehh..)<br class="astro-IX0hxfND"><em class="astro-IX0hxfND">Should they use two's complement?</em> (technically, probably yes, but subjectively in this context...?)<br class="astro-IX0hxfND"><em class="astro-IX0hxfND">Would either of those directions help MORE in the world of CSS art and design?</em><br class="astro-IX0hxfND"><a href="https://tiwtter.com/James0x57" class="astro-IX0hxfND">Please contact me (Jane) on Twitter with any feedback!</a></p><div aria-hidden="true" class="notice astro-IX0hxfND"></div><br class="astro-IX0hxfND"><section id="output-values" class="astro-IX0hxfND"><h3 class="astro-IX0hxfND">Direct values and their NOT values:</h3><code class="astro-IX0hxfND">&lt;div data-bin-bits="a" style="--bin-a-round: -1.5;"&gt;&lt;/div&gt;</code><br class="astro-IX0hxfND"><code class="astro-IX0hxfND">&lt;div data-bin-bits="a" style="--bin-a-round: 999; --bin-a-1: 0;"&gt;&lt;/div&gt;</code><br class="astro-IX0hxfND"><code class="astro-IX0hxfND">&lt;div data-bin-bits="a" style="--bin-a-round: 64537; --bin-a-3: 1;"&gt;&lt;/div&gt;</code><br class="astro-IX0hxfND"><p class="astro-IX0hxfND">
+        Given the inputs above, <code class="astro-IX0hxfND"><b class="astro-IX0hxfND">--bin-a-VAL</b></code> will contain <samp class="astro-IX0hxfND">2</samp>, <samp class="astro-IX0hxfND">998</samp>, and <samp class="astro-IX0hxfND">64541</samp> respectively.<br class="astro-IX0hxfND">
+        This is the absolute value of the bits.<br class="astro-IX0hxfND">
+        Given the same inputs, <code class="astro-IX0hxfND"><b class="astro-IX0hxfND">--bin-a-NOT</b></code> will contain <samp class="astro-IX0hxfND">65533</samp>, <samp class="astro-IX0hxfND">64537</samp>, and <samp class="astro-IX0hxfND">995</samp> respectively.<br class="astro-IX0hxfND">
+        This is the NOT of absolute value of the bits.<br class="astro-IX0hxfND"></p><p class="astro-IX0hxfND">
+        Given the inputs above, <code class="astro-IX0hxfND"><b class="astro-IX0hxfND">--bin-a-SIGNED</b></code> will contain <samp class="astro-IX0hxfND">-2</samp>, <samp class="astro-IX0hxfND">998</samp>, and <samp class="astro-IX0hxfND">64541</samp> respectively.<br class="astro-IX0hxfND">
+        This is the absolute value of the bits with the original sign.<br class="astro-IX0hxfND">
+        Given the same inputs, <code class="astro-IX0hxfND"><b class="astro-IX0hxfND">--bin-a-SIGNED-NOT</b></code> will contain <samp class="astro-IX0hxfND">65533</samp>, <samp class="astro-IX0hxfND">-64537</samp>, and <samp class="astro-IX0hxfND">-995</samp> respectively.<br class="astro-IX0hxfND">
+        This is the NOT of absolute value of the bits with the opposite of the original sign.<br class="astro-IX0hxfND"></p></section><section id="output-meta-flags" class="astro-IX0hxfND"><h3 class="astro-IX0hxfND">Helpful flag outputs:</h3><code class="astro-IX0hxfND">&lt;div data-bin-bits="a" style="--bin-a-trunc: -1.5;"&gt;&lt;/div&gt;</code><br class="astro-IX0hxfND"><code class="astro-IX0hxfND">&lt;div data-bin-bits="a" style="--bin-a-trunc: 1 + 0.499;"&gt;&lt;/div&gt;</code><br class="astro-IX0hxfND"><code class="astro-IX0hxfND">&lt;div data-bin-bits="a" style="--bin-a-trunc: 67001;"&gt;&lt;/div&gt;</code><br class="astro-IX0hxfND"><p class="astro-IX0hxfND"><code class="astro-IX0hxfND">--bin-a-POS</code> will contain a 1 if sign is 1, and will contain a 0 if sign is -1.<br class="astro-IX0hxfND"><code class="astro-IX0hxfND">--bin-a-NEG</code> will contain a 0 if sign is 1, and will contain a 1 if sign is -1.<br class="astro-IX0hxfND"><code class="astro-IX0hxfND">--bin-a-EVEN</code> will contain a 1 if the first bit is 0, else it will contain a 0.<br class="astro-IX0hxfND"><code class="astro-IX0hxfND">--bin-a-ODD</code> is an alias of the first bit. (Will be 1 for odd numbers, else 0.)<br class="astro-IX0hxfND"></p></section><section id="output-modulo-operations" class="astro-IX0hxfND"><h3 class="astro-IX0hxfND">Modulo:</h3><code class="astro-IX0hxfND">&lt;div data-bin-bits="a" style="--bin-a-trunc: 9374; <b class="astro-IX0hxfND">--bin-a-mod</b>: 5;"&gt;&lt;/div&gt;</code><br class="astro-IX0hxfND"><code class="astro-IX0hxfND">&lt;div data-bin-bits="a" style="--bin-a-trunc: 3; <b class="astro-IX0hxfND">--bin-a-mod</b>: 3;"&gt;&lt;/div&gt;</code><br class="astro-IX0hxfND"><code class="astro-IX0hxfND">&lt;div data-bin-bits="a" style="--bin-a-trunc: 6; --bin-a-1: 1; <b class="astro-IX0hxfND">--bin-a-mod</b>: 10;"&gt;&lt;/div&gt;</code><br class="astro-IX0hxfND"><p class="astro-IX0hxfND">
+        Given the inputs and <code class="astro-IX0hxfND">--bin-a-mod</code> value above, respectively, <code class="astro-IX0hxfND">--bin-a-MOD</code> will be: <samp class="astro-IX0hxfND">4</samp>, <samp class="astro-IX0hxfND">0</samp>, <samp class="astro-IX0hxfND">7</samp><br class="astro-IX0hxfND">
+        The input (lowercase variable <code class="astro-IX0hxfND">--bin-a-mod</code>) must be a positive integer greater than 0.
+      </p><p class="astro-IX0hxfND"><a href="https://twitter.com/anatudor/status/1399849494628425734" class="astro-IX0hxfND">Thank you, Ana!</a></p></section><section id="output-bit-shifting" class="astro-IX0hxfND"><h3 class="astro-IX0hxfND">Bit Shifting</h3><code class="astro-IX0hxfND">&lt;div data-bin-bits="a" style="--bin-a-trunc: -23; <b class="astro-IX0hxfND">--bin-a-shift</b>: 1;"&gt;&lt;/div&gt;</code><br class="astro-IX0hxfND"><p class="astro-IX0hxfND"><code class="astro-IX0hxfND">--bin-a-shift</code> must be an integer in range [0, 15]<br class="astro-IX0hxfND">
+        Given the input and shift value above, you get 3 different outputs:<br class="astro-IX0hxfND"><code class="astro-IX0hxfND">--bin-a-LEFT</code> will be: <samp class="astro-IX0hxfND">46</samp> (absolute value of the input, shifted left 1)<br class="astro-IX0hxfND"><code class="astro-IX0hxfND">--bin-a-RIGHT</code> will be: <samp class="astro-IX0hxfND">11</samp> (absolute value of the input, shifted right 1 and truncated to int)<br class="astro-IX0hxfND"><code class="astro-IX0hxfND">--bin-a-SIGNED-RIGHT</code> will be: <samp class="astro-IX0hxfND">-32779</samp><br class="astro-IX0hxfND">
+        SIGNED-RIGHT is the absolute value of the input, shifted right 1 (and left-filled with 1s because the input is negative)<br class="astro-IX0hxfND">
+        If passed into another input set:<br class="astro-IX0hxfND"><code class="astro-IX0hxfND">&lt;div data-bin-bits="a b" style="--bin-a-trunc: -23; --bin-a-shift: 1; <b class="astro-IX0hxfND">--bin-b-trunc: var(--bin-a-SIGNED-RIGHT);</b>"&gt;&lt;/div&gt;</code><br class="astro-IX0hxfND">
+        the bits from #16 to #1 will be 1000000000001011.<br class="astro-IX0hxfND">
+        ⚠️ Before a version 1.0.0 release, the bit form of negative numbers will likely change and the span of 0's here are likely to be 1s from a Two's Complement representation.
+        (<a href="#request-for-feedback" style="position: static; display: inline;" class="astro-IX0hxfND">see note above</a>)
+      </p></section></article></section><div class="retro-light-out astro-ExtMIPsR" aria-hidden="true"></div><div class="retro-light-in astro-ExtMIPsR" aria-hidden="true"></div><div class="retro-light-in2 astro-ExtMIPsR" aria-hidden="true"></div><section class="logic-docs astro-ExtMIPsR"><article data-augmented-ui="border l-clip-y r-clip-y t-rect-x" id="logic-docs" class="astro-ExtMIPsR"><a href="#logic-docs" aria-label="page jump here" class="astro-ExtMIPsR"></a><h2 style="max-width: 80%; margin: 0 auto;" class="astro-ExtMIPsR">Logical Operations Between&nbsp;Two&nbsp;Input&nbsp;Sets</h2><p class="astro-ExtMIPsR">
+      The 6 input sets can be logically combined to produce their own set by adding its name to the data attribute:
+      <code class="astro-ExtMIPsR">data-bin-bits="a b <b class="astro-ExtMIPsR">ab</b>"</code><br class="astro-ExtMIPsR">
+      The available sets are named:<br class="astro-ExtMIPsR"><code class="astro-ExtMIPsR">ab</code>, <code class="astro-ExtMIPsR">ac</code>, <code class="astro-ExtMIPsR">ad</code>, <code class="astro-ExtMIPsR">ae</code>, <code class="astro-ExtMIPsR">af</code>,<br class="astro-ExtMIPsR"><code class="astro-ExtMIPsR">bc</code>, <code class="astro-ExtMIPsR">bd</code>, <code class="astro-ExtMIPsR">be</code>, <code class="astro-ExtMIPsR">bf</code>,<br class="astro-ExtMIPsR"><code class="astro-ExtMIPsR">cd</code>, <code class="astro-ExtMIPsR">ce</code>, <code class="astro-ExtMIPsR">cf</code>,<br class="astro-ExtMIPsR"><code class="astro-ExtMIPsR">de</code>, <code class="astro-ExtMIPsR">df</code>,<br class="astro-ExtMIPsR"><code class="astro-ExtMIPsR">ef</code><br class="astro-ExtMIPsR">
+      Any or all of them can be added to a single element.<br class="astro-ExtMIPsR">
+      Just like the original input sets, the resulting bits can be read and/or overwritten:<br class="astro-ExtMIPsR"><code class="astro-ExtMIPsR">--bin-ab-1</code> ... <code class="astro-ExtMIPsR">--bin-ab-16</code></p><section id="logic-operator" class="astro-ExtMIPsR"><h3 class="astro-ExtMIPsR">Choosing the operation:</h3><p class="astro-ExtMIPsR">
+        By default, the 16 bits from each of the left and right sets will be combined with XOR.<br class="astro-ExtMIPsR">
+        To change the opperation, assign one of the following operators:<br class="astro-ExtMIPsR"><code class="astro-ExtMIPsR">var(--bin-NOT)</code><br class="astro-ExtMIPsR"><code class="astro-ExtMIPsR">var(--bin-AND)</code><br class="astro-ExtMIPsR"><code class="astro-ExtMIPsR">var(--bin-NAND)</code><br class="astro-ExtMIPsR"><code class="astro-ExtMIPsR">var(--bin-OR)</code><br class="astro-ExtMIPsR"><code class="astro-ExtMIPsR">var(--bin-NOR)</code><br class="astro-ExtMIPsR"><code class="astro-ExtMIPsR">var(--bin-XOR)</code><br class="astro-ExtMIPsR">
+        To the set's op prop:<br class="astro-ExtMIPsR"><code class="astro-ExtMIPsR">--bin-ab-op: var(--bin-NAND);</code><br class="astro-ExtMIPsR">
+        The ab bit set would now represent <samp class="astro-ExtMIPsR">a NAND b</samp><br class="astro-ExtMIPsR">
+        (note the operators are global and do not specify a set in their name, unlike all other css-bin-bits variables)
+      </p></section><section id="logic-outputs" class="astro-ExtMIPsR"><h3 class="astro-ExtMIPsR">Output operations:</h3><p class="astro-ExtMIPsR">
+        The output API documented previously also works on combined sets.<br class="astro-ExtMIPsR">
+        Therefore, <code class="astro-ExtMIPsR">--bin-ab-NOT</code>, <code class="astro-ExtMIPsR">--bin-ab-EVEN</code>,
+        <code class="astro-ExtMIPsR">--bin-ab-shift &amp; --bin-ab-RIGHT/LEFT/SIGNED-RIGHT</code>,
+        <code class="astro-ExtMIPsR">--bin-ab-mod &amp; --bin-ab-MOD</code>, etc, all behave the same way, producing an integer calculated from the bits in this set.<br class="astro-ExtMIPsR">
+        Just like the single input set's outputs, you can pass any into another single-letter set to perform further operations<br class="astro-ExtMIPsR"><code class="astro-ExtMIPsR">
+          &lt;div data-bin-bits="a b ab c d bc cd e f ef"<br class="astro-ExtMIPsR">
+          &nbsp;&nbsp;style="<br class="astro-ExtMIPsR">
+          &nbsp;&nbsp;&nbsp;&nbsp;--bin-a-trunc: 5;<br class="astro-ExtMIPsR">
+          &nbsp;&nbsp;&nbsp;&nbsp;--bin-b-trunc: 3;<br class="astro-ExtMIPsR">
+          &nbsp;&nbsp;&nbsp;&nbsp;--bin-c-trunc: var(--bin-a-trunc);<br class="astro-ExtMIPsR">
+          &nbsp;&nbsp;&nbsp;&nbsp;--bin-bc-op: var(--bin-OR);<br class="astro-ExtMIPsR">
+          &nbsp;&nbsp;&nbsp;&nbsp;--bin-d-trunc: var(--bin-b-trunc);<br class="astro-ExtMIPsR">
+          &nbsp;&nbsp;&nbsp;&nbsp;--bin-cd-op: var(--bin-AND);<br class="astro-ExtMIPsR">
+          &nbsp;&nbsp;&nbsp;&nbsp;<b class="astro-ExtMIPsR">--bin-e-trunc: var(--bin-bc-VAL);</b><br class="astro-ExtMIPsR">
+          &nbsp;&nbsp;&nbsp;&nbsp;<b class="astro-ExtMIPsR">--bin-f-trunc: var(--bin-cd-NOT);</b><br class="astro-ExtMIPsR">
+          &nbsp;&nbsp;&nbsp;&nbsp;--bin-ef-op: var(--bin-AND);<br class="astro-ExtMIPsR">
+          &nbsp;&nbsp;"<br class="astro-ExtMIPsR">
+          &gt;&lt;/div&gt;
+        </code><br class="astro-ExtMIPsR">
+        Given the input above, <code class="astro-ExtMIPsR">--bin-ab-VAL</code> will be <samp class="astro-ExtMIPsR">6</samp> from a XOR b,<br class="astro-ExtMIPsR">
+        and, <code class="astro-ExtMIPsR">--bin-ef-VAL</code> will be <samp class="astro-ExtMIPsR">6</samp> from c = a, d = b, then, effectively:<br class="astro-ExtMIPsR">
+        (a OR b) AND (NOT (a AND b))<br class="astro-ExtMIPsR">
+        Which is the same as an XOR.<br class="astro-ExtMIPsR"><br class="astro-ExtMIPsR">
+        Live demo:<br class="astro-ExtMIPsR"><samp data-bin-bits="a b ab c d bc cd e f ef" class="xor-demo astro-ExtMIPsR"></samp><br class="astro-ExtMIPsR"><br class="astro-ExtMIPsR">
+        ⚠️ Critical: This demo is not accessible. <i class="astro-ExtMIPsR">...and it crashes Chrome Dev Tools</i> 🙃<br class="astro-ExtMIPsR">
+        css-bin-bits should not be used to display values in a pseudo element's content unless it's for decoration only.<br class="astro-ExtMIPsR">
+        Though a CSS-only programmer's calculator is possible and a fun idea for a tech demo, the result would not be accessible with today's CSS.
+      </p></section></article></section></body></html>

@@ -1,0 +1,195 @@
+---
+import "augmented-ui/augmented-ui.min.css"
+import "css-media-vars/css-media-vars.css"
+---
+
+<style>
+  .retro-light-in {
+    width: calc(var(--rail-width) + 0.5rem);
+    height: 25rem;
+    position: absolute;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transform: translateY(8rem);
+  }
+  .retro-light-in::before {
+    content: "";
+    width: 25rem;
+    height: 25rem;
+    position: absolute;
+    top: 0;
+    left: calc(100% + 0.5rem);
+    transform-origin: 100% 0;
+    --xl-scale: var(--media-xl) 3;
+    transform: translateX(-100%) scaleX(var(--xl-scale, 2));
+    background: conic-gradient(
+      from 100deg at 0 0,
+      hsl(var(--theme_2)) 3deg,
+      transparent 3deg 5deg,
+      hsl(var(--theme_3)) 5deg 8deg,
+      transparent 8deg 10deg,
+      hsl(var(--theme_4)) 10deg 13deg,
+      transparent 13deg 15deg,
+      hsl(var(--theme_3)) 15deg 18deg,
+      transparent 18deg 20deg,
+      hsl(var(--theme_2)) 20deg 23deg,
+      transparent 23deg
+    ) 0 0 no-repeat;
+    filter: blur(0.25rem);
+  }
+  .input-section {
+    position: relative;
+    overflow: hidden;
+    filter: drop-shadow(0 0 1rem rgb(0 0 0 / 0.75));
+  }
+  .input-section article {
+    width: var(--main-width);
+    max-width: 100%;
+    position: relative;
+    margin: 0 auto;
+    background: hsl(var(--theme_1));
+    --sm-pad: var(--media-lte-sm) 1rem;
+    padding: var(--sm-pad, 2rem);
+    --sm-fs: var(--media-lte-sm) 1rem;
+    font-size: var(--sm-fs, 1.25rem);
+    line-height: 1.33;
+    margin-top: 8rem;
+    --sm-clip: var(--media-lte-sm) 0.25rem;
+    --aug-border-all: calc(var(--main-width) * 0.15 * 0.08);
+    --aug-border-bg: hsl(var(--at-prop-bg));
+    --aug-l: var(--sm-clip, 0.5rem);
+    --aug-l-center: 10.5rem;
+    --aug-l-extend1: 14rem;
+    --aug-clip-tr1: initial;
+    --aug-tr1: calc(var(--main-width) / 8);
+    --aug-b1-width: 0px;
+    --aug-b1-height: 2rem;
+    --aug-b2-width: 0px;
+    --aug-b2-height: 2rem;
+    --aug-b-extend1: 50%;
+    padding-bottom: 8rem;
+  }
+
+  article section {
+    margin-top: 2rem;
+  }
+
+  h2 {
+    display: block;
+    --sm: var(--media-xs) 1.25rem;
+    font-size: var(--sm, 2rem);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    --sm: var(--media-xs) 1.125rem;
+    font-size: var(--sm, 1.5rem);
+    margin-bottom: 1rem;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  code {
+    margin: 0.25rem;
+  }
+  article p {
+    margin: 0.25rem;
+    margin-top: 1rem;
+  }
+</style>
+
+<div class="retro-light-in" aria-hidden="true"></div>
+<section class="input-section">
+  <article data-augmented-ui="border l-clip-y b-rect-x" id="input-docs">
+    <a href="#input-docs" aria-label="page jump here"></a><h2>Input → css-bin-bits</h2>
+    <p>
+      To attach the css-bin-bits API to an element, add the data attribute: <code>data-bin-bits="a"</code><br>
+      Now you can pass a number into one of the entry points for rounding or truncation.<br>
+      The number can be an expression, calc(), or var() that results in a number.<br>
+      Units (such as px, %, or deg) must not be part of the input.
+    </p>
+    <section id="input-rounding">
+      <h3>Rounding:</h3>
+      <code>&lt;div data-bin-bits="a" style="<b>--bin-a-round</b>: -1.5;"&gt;&lt;/div&gt;</code><br>
+      <code>&lt;div data-bin-bits="a" style="<b>--bin-a-round</b>: 1 + 0.499;"&gt;&lt;/div&gt;</code><br>
+      <code>&lt;div data-bin-bits="a" style="<b>--bin-a-round</b>: (40 * 1000 + 1) * -2;"&gt;&lt;/div&gt;</code><br>
+      <p>
+        The input <code>--bin-a-round</code> is clamped first to +/- 16bits <span class="nowrap">[-65535, 65535]</span>,
+        then the rounding algorithm (+/- 0.5 away-from-zero) is applied.<br>
+        Therefore the above numbers, respectively, produce: <samp>-2</samp>, <samp>1</samp>, <samp>-65535</samp>
+      </p>
+    </section>
+    <section id="input-truncation">
+      <h3>Truncation:</h3>
+      <code>&lt;div data-bin-bits="a" style="<b>--bin-a-trunc</b>: -1.5;"&gt;&lt;/div&gt;</code><br>
+      <code>&lt;div data-bin-bits="a" style="<b>--bin-a-trunc</b>: 1 + 0.499;"&gt;&lt;/div&gt;</code><br>
+      <code>&lt;div data-bin-bits="a" style="<b>--bin-a-trunc</b>: 67001;"&gt;&lt;/div&gt;</code><br>
+      <p>
+        The input <code>--bin-a-trunc</code> is clamped first to +/- 16bits <span class="nowrap">[-65535, 65535]</span>, then truncated towards 0.<br>
+        Therefore the above numbers, respectively, produce: <samp>-1</samp>, <samp>1</samp>, <samp>65535</samp>
+      </p>
+    </section>
+    <p>
+      If both *-round and *-trunc are provided, the value from *-round is used and *-trunc is ignored.
+    </p>
+    <section id="input-bit-overrides">
+      <h3>Overriding Bits:</h3>
+      <code>&lt;div data-bin-bits="a" style="--bin-a-trunc: 5; <b>--bin-a-1</b>: 0;"&gt;&lt;/div&gt;</code><br>
+      <code>&lt;div data-bin-bits="a" style="--bin-a-trunc: 5; <b>--bin-a-2</b>: 1;"&gt;&lt;/div&gt;</code><br>
+      <code>&lt;div data-bin-bits="a" style="--bin-a-trunc: 5; <b>--bin-a-3</b>: 0; <b>--bin-a-4</b>: 1;"&gt;&lt;/div&gt;</code><br>
+      <p>
+        Given the inputs above, respectively, you get:<br>
+        5 (0000000000000101) with bit 1 set to 0 (0000000000000100) results in <samp>4</samp><br>
+        5 (0000000000000101) with bit 2 set to 1 (0000000000000111) results in <samp>7</samp><br>
+        5 (0000000000000101) with bit 3 set to 0 and bit 4 set to 1 (0000000000001001) results in <samp>9</samp>
+      </p>
+      <p>
+        Each of the 16 bits from 1 to 16 can be overwritten as expected:<br>
+        --bin-a-1: 0; sets the first (least significant) bit to <samp>0</samp><br>
+        --bin-a-9: 1; sets the ninth bit to <samp>1</samp><br>
+        --bin-a-16: 1; sets the sixteenth (most significant) bit to <samp>1</samp>
+      </p>
+      <div>
+        <h4>Caution! ⚠️</h4>
+        If you override a bit, it must be set directly to 1 or 0, or be a calc/min/max/clamp
+        that results in a unitless number that would round to 1 or 0.<br>
+        for example:<br>
+        --bin-a-1: 1.3; does not work<br>
+        --bin-a-1: 1 + 0.3; does not work<br>
+        --bin-a-1: calc(1.3); will work<br>
+        --bin-a-1: calc(1.5); does not work<br>
+        --bin-a-1: clamp(0, 1.5, 1); will work<br>
+        Arbitrarily-bad-things will happen if any of them are set to anything other
+        than 1 or 0, behavior is not defined or to be relied upon for any other values!
+      </div>
+    </section>
+    <section id="multiple-inputs">
+      <h3>Multiple input sets on a single element</h3>
+      <code>
+        &lt;div <b>data-bin-bits="a b c"</b><br>
+        &nbsp;&nbsp;style="<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;--bin-a-round: -1.5;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;--bin-b-trunc: 99.9;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;--bin-c-round: 0;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;--bin-c-3: 1;<br>
+        &nbsp;&nbsp;"<br>
+        &gt;&lt;/div&gt;
+      </code><br>
+      <p>
+        You can use up to 6 input sets on a single element.<br>
+        The sets are named <code>a</code>, <code>b</code>, <code>c</code>, <code>d</code>, <code>e</code>, and <code>f</code>.<br>
+        The css-bin-bits API becomes available for an element, for each input, by
+        placing the set's name in the space-delimited <code>data-bin-bits</code> attribute value, like in the example above.<br>
+        You can provide input values from your CSS files as long as the <code>data-bin-bits</code> attribute is set accordingly.
+        (the input values do not need to be set from the inline style="" attribute).
+      </p>
+    </section>
+  </article>
+</section>

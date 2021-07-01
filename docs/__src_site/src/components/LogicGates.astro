@@ -1,0 +1,257 @@
+---
+import "augmented-ui/augmented-ui.min.css"
+import "css-media-vars/css-media-vars.css"
+---
+
+<style>
+  .retro-light-out {
+    height: 20rem;
+    width: calc(var(--main-width) * 0.45);
+    margin: -10rem auto;
+    pointer-events: none;
+    background: linear-gradient(
+      to right,
+      hsl(var(--theme_2)) 0 16%,
+      transparent 16% 21%,
+      hsl(var(--theme_3)) 21% 37%,
+      transparent 37% 42%,
+      hsl(var(--theme_4)) 42% 58%,
+      transparent 58% 63%,
+      hsl(var(--theme_3)) 63% 79%,
+      transparent 79% 84%,
+      hsl(var(--theme_2)) 84% 100%
+    );
+  }
+  .retro-light-in {
+    width: calc(var(--rail-width) + 0.5rem);
+    height: 25rem;
+    position: absolute;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transform: translateY(12rem);
+  }
+  .retro-light-in::before {
+    content: "";
+    width: 25rem;
+    height: 25rem;
+    position: absolute;
+    top: 0;
+    left: calc(100% + 0.5rem);
+    transform-origin: 100% 0;
+    --xl-scale: var(--media-xl) 3;
+    transform: translateX(-100%) scaleX(var(--xl-scale, 2));
+    background: conic-gradient(
+      from 57deg at 0 100%,
+      hsl(var(--theme_2)) 3deg,
+      transparent 3deg 5deg,
+      hsl(var(--theme_3)) 5deg 8deg,
+      transparent 8deg 10deg,
+      hsl(var(--theme_4)) 10deg 13deg,
+      transparent 13deg 15deg,
+      hsl(var(--theme_3)) 15deg 18deg,
+      transparent 18deg 20deg,
+      hsl(var(--theme_2)) 20deg 23deg,
+      transparent 23deg
+    ) 0 0 no-repeat;
+    filter: blur(0.25rem);
+  }
+  .retro-light-in2 {
+    width: calc(var(--rail-width) + 0.5rem);
+    height: 25rem;
+    position: absolute;
+    right: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transform: translateY(12rem);
+  }
+  .retro-light-in2::before {
+    content: "";
+    width: 25rem;
+    height: 25rem;
+    position: absolute;
+    top: 0;
+    left: calc(-0.5rem);
+    transform-origin: 100% 0;
+    --xl-scale: var(--media-xl) 3;
+    transform: translateX(-100%) scaleX(calc(-1 * var(--xl-scale, 2)));
+    background: conic-gradient(
+      from 57deg at 0 100%,
+      hsl(var(--theme_2)) 3deg,
+      transparent 3deg 5deg,
+      hsl(var(--theme_3)) 5deg 8deg,
+      transparent 8deg 10deg,
+      hsl(var(--theme_4)) 10deg 13deg,
+      transparent 13deg 15deg,
+      hsl(var(--theme_3)) 15deg 18deg,
+      transparent 18deg 20deg,
+      hsl(var(--theme_2)) 20deg 23deg,
+      transparent 23deg
+    ) 0 0 no-repeat;
+    filter: blur(0.25rem);
+  }
+  .logic-docs {
+    position: relative;
+    overflow: hidden;
+    filter: drop-shadow(0 0 1rem rgb(0 0 0 / 0.75));
+  }
+  .logic-docs article {
+    width: var(--main-width);
+    max-width: 100%;
+    position: relative;
+    margin: 0 auto;
+    background: hsl(var(--theme_1));
+    --sm-pad: var(--media-lte-sm) 1rem;
+    padding: var(--sm-pad, 2rem);
+    --sm-fs: var(--media-lte-sm) 1rem;
+    font-size: var(--sm-fs, 1.25rem);
+    line-height: 1.33;
+    margin-top: 8rem;
+    --sm-clip: var(--media-lte-sm) 0.25rem;
+    --aug-border-all: calc(var(--main-width) * 0.15 * 0.08);
+    --aug-border-bg: hsl(var(--at-prop-bg));
+    --aug-l: var(--sm-clip, 0.5rem);
+    --aug-l-center: 18.5rem;
+    --aug-l-extend1: 14rem;
+    --aug-r: var(--sm-clip, 0.5rem);
+    --aug-r-center: 18.5rem;
+    --aug-r-extend1: 14rem;
+    --aug-clip-tr1: initial;
+    --aug-tr1: calc(var(--main-width) / 8);
+    --aug-t1-width: 0px;
+    --aug-t1-height: 2rem;
+    --aug-t2-width: 0px;
+    --aug-t2-height: 2rem;
+    --aug-t-extend1: 50%;
+    --aug-t-center: 50%;
+    padding-top: 4rem;
+    padding-bottom: 8rem;
+  }
+
+  article section {
+    margin-top: 2rem;
+  }
+
+  h2 {
+    display: block;
+    --sm: var(--media-xs) 1.25rem;
+    font-size: var(--sm, 2rem);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    --sm: var(--media-xs) 1.125rem;
+    font-size: var(--sm, 1.5rem);
+    margin-bottom: 1rem;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  code {
+    margin: 0.25rem;
+  }
+  article p {
+    margin: 0.25rem;
+    margin-top: 1rem;
+  }
+  
+  samp.xor-demo {
+    --bin-a-trunc: 5;
+    --bin-b-trunc: 3;
+    --bin-c-trunc: var(--bin-a-trunc);
+    --bin-bc-op: var(--bin-OR);
+    --bin-d-trunc: var(--bin-b-trunc);
+    --bin-cd-op: var(--bin-AND);
+    --bin-e-trunc: var(--bin-bc-VAL);
+    --bin-f-trunc: var(--bin-cd-NOT);
+    --bin-ef-op: var(--bin-AND);
+  }
+  samp.xor-demo::after {
+    --bin-ab-VAL: inherit;
+    --bin-ef-VAL: inherit;
+    counter-reset: ab calc(var(--bin-ab-VAL)) ef calc(var(--bin-ef-VAL));
+    --unsupported-content: var(--media-at-property-unsupported) "@property is not supported in this browser. Try Chrome, Edge, or Opera.";
+    content: var(--unsupported-content, counter(ab) " === " counter(ef));
+  }
+</style>
+
+<div class="retro-light-out" aria-hidden="true"></div>
+<div class="retro-light-in" aria-hidden="true"></div>
+<div class="retro-light-in2" aria-hidden="true"></div>
+<section class="logic-docs">
+  <article data-augmented-ui="border l-clip-y r-clip-y t-rect-x" id="logic-docs">
+    <a href="#logic-docs" aria-label="page jump here"></a><h2 style="max-width: 80%; margin: 0 auto;">Logical Operations Between&nbsp;Two&nbsp;Input&nbsp;Sets</h2>
+    <p>
+      The 6 input sets can be logically combined to produce their own set by adding its name to the data attribute:
+      <code>data-bin-bits="a b <b>ab</b>"</code><br>
+      The available sets are named:<br>
+      <code>ab</code>, <code>ac</code>, <code>ad</code>, <code>ae</code>, <code>af</code>,<br>
+      <code>bc</code>, <code>bd</code>, <code>be</code>, <code>bf</code>,<br>
+      <code>cd</code>, <code>ce</code>, <code>cf</code>,<br>
+      <code>de</code>, <code>df</code>,<br>
+      <code>ef</code><br>
+      Any or all of them can be added to a single element.<br>
+      Just like the original input sets, the resulting bits can be read and/or overwritten:<br>
+      <code>--bin-ab-1</code> ... <code>--bin-ab-16</code>
+    </p>
+    <section id="logic-operator">
+      <h3>Choosing the operation:</h3>
+      <p>
+        By default, the 16 bits from each of the left and right sets will be combined with XOR.<br>
+        To change the opperation, assign one of the following operators:<br>
+        <code>var(--bin-NOT)</code><br>
+        <code>var(--bin-AND)</code><br>
+        <code>var(--bin-NAND)</code><br>
+        <code>var(--bin-OR)</code><br>
+        <code>var(--bin-NOR)</code><br>
+        <code>var(--bin-XOR)</code><br>
+        To the set's op prop:<br>
+        <code>--bin-ab-op: var(--bin-NAND);</code><br>
+        The ab bit set would now represent <samp>a NAND b</samp><br>
+        (note the operators are global and do not specify a set in their name, unlike all other css-bin-bits variables)
+      </p>
+    </section>
+    <section id="logic-outputs">
+      <h3>Output operations:</h3>
+      <p>
+        The output API documented previously also works on combined sets.<br>
+        Therefore, <code>--bin-ab-NOT</code>, <code>--bin-ab-EVEN</code>,
+        <code>--bin-ab-shift &amp; --bin-ab-RIGHT/LEFT/SIGNED-RIGHT</code>,
+        <code>--bin-ab-mod &amp; --bin-ab-MOD</code>, etc, all behave the same way, producing an integer calculated from the bits in this set.<br>
+        Just like the single input set's outputs, you can pass any into another single-letter set to perform further operations<br>
+        <code>
+          &lt;div data-bin-bits="a b ab c d bc cd e f ef"<br>
+          &nbsp;&nbsp;style="<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;--bin-a-trunc: 5;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;--bin-b-trunc: 3;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;--bin-c-trunc: var(--bin-a-trunc);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;--bin-bc-op: var(--bin-OR);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;--bin-d-trunc: var(--bin-b-trunc);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;--bin-cd-op: var(--bin-AND);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<b>--bin-e-trunc: var(--bin-bc-VAL);</b><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<b>--bin-f-trunc: var(--bin-cd-NOT);</b><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;--bin-ef-op: var(--bin-AND);<br>
+          &nbsp;&nbsp;"<br>
+          &gt;&lt;/div&gt;
+        </code><br>
+        Given the input above, <code>--bin-ab-VAL</code> will be <samp>6</samp> from a XOR b,<br>
+        and, <code>--bin-ef-VAL</code> will be <samp>6</samp> from c = a, d = b, then, effectively:<br>
+        (a OR b) AND (NOT (a AND b))<br>
+        Which is the same as an XOR.<br>
+        <br>
+        Live demo:<br>
+        <samp data-bin-bits="a b ab c d bc cd e f ef" class="xor-demo"></samp><br>
+        <br>
+        ⚠️ Critical: This demo is not accessible. <i>...and it crashes Chrome Dev Tools</i> 🙃<br>
+        css-bin-bits should not be used to display values in a pseudo element's content unless it's for decoration only.<br>
+        Though a CSS-only programmer's calculator is possible and a fun idea for a tech demo, the result would not be accessible with today's CSS.
+      </p>
+    </section>
+  </article>
+</section>
