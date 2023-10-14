@@ -59,8 +59,23 @@
 }
 
 :root {
-  --at-prop-bg-if-failed: var(--media-at-property-unsupported) var(--theme_4);
-  --at-prop-color-if-failed: var(--media-at-property-unsupported) var(--theme_0);
+  --at-property-integers-supported: initial;
+  --at-property-integers-unsupported: ;
+}
+@supports (background: paint(css-bin-bits)) or (
+  (-webkit-hyphens: none) and (font-size-adjust: from-font)
+) {
+  /* is Chrome or (is Safari and >= v17) */
+  /* @property is supported with correct integer rounding */
+  :root {
+    --at-property-integers-supported: ;
+    --at-property-integers-unsupported: initial;
+  }
+}
+
+:root {
+  --at-prop-bg-if-failed: var(--at-property-integers-unsupported) var(--theme_4);
+  --at-prop-color-if-failed: var(--at-property-integers-unsupported) var(--theme_0);
   --at-prop-bg: var(--at-prop-bg-if-failed, var(--theme_3));
   --at-prop-color: var(--at-prop-color-if-failed, var(--theme_1));
 }

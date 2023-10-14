@@ -176,7 +176,7 @@ import "css-media-vars/css-media-vars.css"
     --bin-ab-VAL: inherit;
     --bin-ef-VAL: inherit;
     counter-reset: ab calc(var(--bin-ab-VAL)) ef calc(var(--bin-ef-VAL));
-    --unsupported-content: var(--media-at-property-unsupported) "@property is not supported in this browser. Try Chrome, Edge, or Opera.";
+    --unsupported-content: var(--at-property-integers-unsupported) "@property with correct integer rounding is not supported in this browser. Try Chrome, Safari 17+, Edge, or Opera.";
     content: var(--unsupported-content, counter(ab) " === " counter(ef));
   }
 </style>
