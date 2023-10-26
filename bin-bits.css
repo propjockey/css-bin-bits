@@ -6,9 +6,11 @@
 
 @supports (background: paint(css-bin-bits)) or (
   (-webkit-hyphens: none) and (font-size-adjust: from-font)
+) or (
+  (-moz-appearance: none) and (width: 1rlh)
 ) {
-  /* is Chrome or (is Safari and >= v17) */
-  /* @property is supported with correct integer rounding */
+  /* is Chrome or (is Safari and >= v17) or (Firefox and >= v120) */
+  /* Detects if @property is supported AND has correct integer rounding: */
 
   :where([data-bin-bits]) {
     --bin-NOT: 1 - ; /* (var(--bin-NOT) a) */

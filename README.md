@@ -11,4 +11,6 @@ https://github.com/propjockey/css-breakout
 
 ## Change Log
 
-Oct 2023; Enabled use on Safari 17, @property implemented and integer rounding fixed!
+v0.0.3 Oct 2023; Enabled use on Safari 17+, @property implemented and integer rounding fixed!
+
+v0.0.4 Oct 2023; Enabled use on Firefox 120+, @property implemented!
